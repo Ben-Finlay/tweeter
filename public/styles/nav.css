@@ -1,0 +1,26 @@
+nav {
+  display: flex;
+  height: 120px;
+  width: 100%;
+  background-color: #4056a1;
+  color: #ffffff;
+  padding: 0 1.5em;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+}
+.tweeter {
+  font-family: 'Bungee', cursive;
+}
+
+.writeNewTweet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.bold {
+
+  font-weight: 600;
+}
