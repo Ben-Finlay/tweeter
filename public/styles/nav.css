@@ -21,6 +21,9 @@ nav {
 }
 
 .bold {
-
   font-weight: 600;
+}
+
+.red {
+  color: red;
 }
