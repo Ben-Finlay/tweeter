@@ -16,6 +16,7 @@ article.tweet {
 }
 
 article.tweet:hover {
+  transform: translate(-3px,-3px);
   box-shadow:
   2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
   6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
@@ -87,21 +88,3 @@ article.tweet i:hover {
   cursor: pointer;
 
 }
-
-/* <section id="tweet-container">
-<article class="tweet">
-  <header>
-    <img src="">
-    <h3>Newton</h3>
-    <span class="handle">@SirIsaac</span>
-  </header>
-  <p>
-    If I have seen further it is by standing on the shoulders of giants
-  </p>
-  <footer>
-    <time>10 days ago</time>
-    <i class="fa-solid fa-angles-down red"></i>
-  </footer>
-</article>
-
-</section> */
