@@ -36,7 +36,7 @@ $(document).ready(function() {
     if (char < 0) {
       $(log).css('color', 'red');
     } else {
-      $(log).css('color', 'black');
+      $(log).css('color', '#545149');
     }
   });
   
