@@ -37,11 +37,11 @@ textarea {
 
 button {
   background-color: #4056a1;
-  color: white;
+  color: #f4f1ec;
   border: none;
   padding: 4px 8px;
 }
 
-.counter {
+#counter {
   font-family: 'Bungee', cursive;
 }
