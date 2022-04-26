@@ -5,6 +5,7 @@
   margin: 32px 0;
   width: 92%;
 
+
 }
 
 article.tweet {
@@ -59,9 +60,9 @@ article.tweet header {
   background-color: #f4f1ec;
   background-image: none;
   color: #545149;
-  height: 80px;
+  height: 40px;
   padding-bottom: 10px;
-
+  margin-top: 20px;
 }
 
 .tweet-content {
