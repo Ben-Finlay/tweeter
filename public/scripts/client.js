@@ -6,7 +6,7 @@
 
 //converts tweet object into HTML formatted tweet to be displayed on page.
 const createTweetElement = function(tweetData) {
-  let $tweet = `
+  let $tweet = (`
     <article class="tweet">
     <header>
       <span class="user">
@@ -27,28 +27,37 @@ const createTweetElement = function(tweetData) {
       </div>           
     </footer>
   </article>
-  `;
+  `);
   // console.log("function tweet:",$tweet);
   return $tweet;
 
 };
 
 const renderTweets = function(tweetArr) {
-  let currTweet = {};
-  for (let tweet of tweetArr) {
-    currTweet = createTweetElement(tweet);
-    $("#tweet-container").append(currTweet);
-   
-  }
 
+  for (let tweet of tweetArr) {
+    const currTweet = createTweetElement(tweet);
+    $("#tweet-container").append(currTweet);   
+  }
 };
 
 //Ex. Data
 const tweetEx = [
   {
     "user": {
-      "name": "Marco",
+      "name": "Newton",
       "avatars": "https://i.imgur.com/73hZDYK.png",
+      "handle": "@SirIsaac"
+    },
+    "content": {
+      "text": "If I have seen further it is by standing on the shoulders of giants"
+    },
+    "created_at": 1650904803134
+  },
+  {
+    "user": {
+      "name": "Marco",
+      "avatars": "https://i.imgur.com/ilT4JDe.png",
       "handle": "@Polo"
     },
     "content": {
@@ -84,10 +93,5 @@ $(document).ready(function() {
 
  
   renderTweets(tweetEx);
-
-  // const $tweet = createTweetElement(tweetEx);
-
-  // console.log("tweet:",$tweet);
-  // $('#tweet-container').append($tweet);
 
 });
