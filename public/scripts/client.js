@@ -37,48 +37,69 @@ const renderTweets = function(tweetArr) {
 
   for (let tweet of tweetArr) {
     const currTweet = createTweetElement(tweet);
-    $("#tweet-container").append(currTweet);   
+    $("#tweet-container").prepend(currTweet);   
   }
 };
 
 //Ex. Data
-const tweetEx = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png",
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1650904803134
-  },
-  {
-    "user": {
-      "name": "Marco",
-      "avatars": "https://i.imgur.com/ilT4JDe.png",
-      "handle": "@Polo"
-    },
-    "content": {
-      "text": "Where am I?"
-    },
-    "created_at": 1650904803134
-  },
+// const tweetEx = [
+//   {
+//     "user": {
+//       "name": "Newton",
+//       "avatars": "https://i.imgur.com/73hZDYK.png",
+//       "handle": "@SirIsaac"
+//     },
+//     "content": {
+//       "text": "If I have seen further it is by standing on the shoulders of giants"
+//     },
+//     "created_at": 1650904803134
+//   },
+//   {
+//     "user": {
+//       "name": "Marco",
+//       "avatars": "https://i.imgur.com/ilT4JDe.png",
+//       "handle": "@Polo"
+//     },
+//     "content": {
+//       "text": "Where am I?"
+//     },
+//     "created_at": 1650904803134
+//   },
 
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd"
-    },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1650991203134
-  }
+//   {
+//     "user": {
+//       "name": "Descartes",
+//       "avatars": "https://i.imgur.com/nlhLi3I.png",
+//       "handle": "@rd"
+//     },
+//     "content": {
+//       "text": "Je pense , donc je suis"
+//     },
+//     "created_at": 1650991203134
+//   }
 
-];
+// ];
+
+const buttonTrigger = function (e) {
+  e.preventDefault();
+  const formData = $(this).serialize();
+
+  $.ajax({
+    method: "POST",
+    data: formData,
+    url: "/tweets",
+  })
+    .then(function(tweet) {
+      getTweets();
+    })   
+};
+
+const getTweets = function() {
+  $.ajax("/tweets", {method: 'GET'})
+  .then((tweets) => {
+    renderTweets(tweets);
+  })
+}
 
 
 $(document).ready(function() {
@@ -91,7 +112,7 @@ $(document).ready(function() {
             (this.scrollHeight) + 'px';
   });
 
- 
-  renderTweets(tweetEx);
+  $("form").submit(buttonTrigger);
+  // renderTweets();
 
 });
