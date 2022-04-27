@@ -55,22 +55,18 @@ const buttonTrigger = function (e) {
   
   //error handling for form submissions
   let $error = $("#errormsg");
-  let $err = $("#warn")
 
   $error.slideUp(100);
-  $err.slideUp(100);
  
   if(!textarea) {  
-    $error.text("Please enter a tweet").css({'color':'red', "font-weight": "600", "margin-top": "10px", "padding":"8px"});
+    $error.text("⚠️ Please enter a tweet").css({'color':'red', "margin-top": "10px", "padding":"8px", "font-style":"italic", "font-weight":"600"});
     $error.slideDown(200);
-    $err.slideDown(200);
 
     return $error;
 
   } else  if(textarea.length > 140) {
-    $error.text("Tweet is too long").css('color', 'red');
+    $error.text("⚠️ Tweet is too long").css({'color':'red', "margin-top": "10px", "padding":"8px", "font-style":"italic", "font-weight":"600"});
     $error.slideDown(200);
-    $err.slideDown(200);
 
     return $error;
 
