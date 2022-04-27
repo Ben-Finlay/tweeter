@@ -96,15 +96,16 @@ const getTweets = function() {
 };
 
 const newTweetButton = function() {
-  console.log("it works")
+  console.log("it works");
   if ($('.new-tweet').is(':visible')) {
     $(".new-tweet").slideUp();
     $("#errormsg").slideUp();
     
   } else {
     $(".new-tweet").slideDown();
+    
   }
-}  
+};
 
 // Prevents functions from pre-firing until the page is fully loaded.
 $(document).ready(function() {
@@ -118,9 +119,16 @@ $(document).ready(function() {
 
   //listens for the button submission of our tweets.
   $("form").submit(buttonTrigger);
+
+  //hides or unhides the header
   $(".writeNewTweet").on("click", function() {
     newTweetButton();
   });
  
+  //calls to pre-load the database tweets
+  getTweets();
+
+  //hides the from until newTweetButton is called
+  $('.new-tweet').hide();
 
 });

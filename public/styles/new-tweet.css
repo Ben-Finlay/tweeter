@@ -24,15 +24,13 @@ textarea {
   resize: none;
   outline: none;
   font-size: 1em;
-  
 }
 
 .tweet-submit {
   display: flex;
   justify-content: space-between;
   font-family: 'Bungee', cursive;
-  padding-top: 0.5em;
-  
+  padding-top: 0.5em; 
 }
 
 button {
