@@ -3,23 +3,29 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
+const noXSS = function (str) {
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
 
 //converts tweet object into HTML formatted tweet to be displayed on page.
 const createTweetElement = function(tweetData) {
+  let locale = timeago.format(tweetData.created_at, Date())
   let $tweet = (`
     <article class="tweet">
     <header>
       <span class="user">
-        <img src="${tweetData.user.avatars}">
-        <p class="user">${tweetData.user.name}</p>
+        <img src="${noXSS(tweetData.user.avatars)}">
+        <p class="user">${noXSS(tweetData.user.name)}</p>
       </span>
-      <span class="handle">${tweetData.user.handle}</span>
+      <span class="handle">${noXSS(tweetData.user.handle)}</span>
     </header>
     <p class="tweet-content">
-      ${tweetData.content.text}
+      ${noXSS(tweetData.content.text)}
     </p>
     <footer>
-      <time>${tweetData.created_at}</time>
+      <time>${noXSS(locale)}</time>
       <div class="icons">
         <i class="fa-solid fa-flag"></i>
         <i class="fa-solid fa-retweet"></i>
@@ -28,72 +34,64 @@ const createTweetElement = function(tweetData) {
     </footer>
   </article>
   `);
-  // console.log("function tweet:",$tweet);
   return $tweet;
 
 };
 
+//takes in a tweetArr from the server and passes them to createTweetElement for display on the page
 const renderTweets = function(tweetArr) {
-
+  $('#tweet-container').empty()
   for (let tweet of tweetArr) {
     const currTweet = createTweetElement(tweet);
     $("#tweet-container").prepend(currTweet);   
   }
 };
 
-//Ex. Data
-// const tweetEx = [
-//   {
-//     "user": {
-//       "name": "Newton",
-//       "avatars": "https://i.imgur.com/73hZDYK.png",
-//       "handle": "@SirIsaac"
-//     },
-//     "content": {
-//       "text": "If I have seen further it is by standing on the shoulders of giants"
-//     },
-//     "created_at": 1650904803134
-//   },
-//   {
-//     "user": {
-//       "name": "Marco",
-//       "avatars": "https://i.imgur.com/ilT4JDe.png",
-//       "handle": "@Polo"
-//     },
-//     "content": {
-//       "text": "Where am I?"
-//     },
-//     "created_at": 1650904803134
-//   },
-
-//   {
-//     "user": {
-//       "name": "Descartes",
-//       "avatars": "https://i.imgur.com/nlhLi3I.png",
-//       "handle": "@rd"
-//     },
-//     "content": {
-//       "text": "Je pense , donc je suis"
-//     },
-//     "created_at": 1650991203134
-//   }
-
-// ];
-
+//handles the form submission by preventing default behaviour and using AJAX to post the tweet to /tweets without redirecting.
 const buttonTrigger = function (e) {
   e.preventDefault();
   const formData = $(this).serialize();
+  const textarea = $("#tweet-text").val()
+  
+  //error handling for form submissions
+  let $error = $("#errormsg");
+  let $err = $("#warn")
 
+  $error.slideUp(100);
+  $err.slideUp(100);
+ 
+  if(!textarea) {  
+    $error.text("Please enter a tweet").css({'color':'red', "font-weight": "600", "margin-top": "10px", "padding":"8px"});
+    $error.slideDown(200);
+    $err.slideDown(200);
+
+    return $error;
+
+  } else  if(textarea.length > 140) {
+    $error.text("Tweet is too long").css('color', 'red');
+    $error.slideDown(200);
+    $err.slideDown(200);
+
+    return $error;
+
+  } 
+ 
+  $("#tweet-text").val('');
+  $("#counter").text('140');
   $.ajax({
     method: "POST",
     data: formData,
     url: "/tweets",
+    type: "application/json"
+
   })
-    .then(function(tweet) {
+    .then(function() {
       getTweets();
-    })   
+    })  
+   
 };
 
+//takes the return from the server POST and passes the array to the renderTweets function.
 const getTweets = function() {
   $.ajax("/tweets", {method: 'GET'})
   .then((tweets) => {
@@ -101,18 +99,18 @@ const getTweets = function() {
   })
 }
 
-
+// Prevents functions from pre-firing until the page is fully loaded.
 $(document).ready(function() {
 
   // auto-expands the textarea for multi-line tweets.
   $('#tweet-text').on('input', function() {
     this.style.height = 'auto';
-      
     this.style.height =
             (this.scrollHeight) + 'px';
   });
 
+  //listens for the button submission of our tweets.
   $("form").submit(buttonTrigger);
-  // renderTweets();
+ 
 
 });
