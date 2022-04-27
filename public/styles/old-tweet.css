@@ -12,7 +12,8 @@ article.tweet {
   display: flex;
   flex-direction: column;
   border: 3px solid black;
-  padding: 20px 20px
+  padding: 20px 20px;
+  margin-bottom: 10px;
   
 }
 
@@ -45,6 +46,11 @@ article.tweet:hover {
   max-width: 64px;
   max-height: 64px;
   padding: 5px;
+  
+}
+
+.user img:hover {
+  animation: rotation 1s linear;
 }
 
 .handle {
@@ -88,4 +94,16 @@ article.tweet i:hover {
   color: #ffaf03;
   cursor: pointer;
 
+}
+
+
+
+
+@keyframes rotation {
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
