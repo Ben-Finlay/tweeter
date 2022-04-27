@@ -5,8 +5,8 @@
  */
 
 //converts tweet object into HTML formatted tweet to be displayed on page.
-  const createTweetElement = function(tweetData) {
-    let $tweet = `
+const createTweetElement = function(tweetData) {
+  let $tweet = `
     <article class="tweet">
     <header>
       <span class="user">
@@ -31,36 +31,63 @@
   // console.log("function tweet:",$tweet);
   return $tweet;
 
-  };
-
-const tweetEx =
-{
-  "user": {
-          "name": "Descartes",
-          "avatars": "https://i.imgur.com/nlhLi3I.png",
-          "handle": "@rd"
-  },
-"content": {
-            "text": "Je pense , donc je suis"
-  },
-"created_at": 1650818297550
 };
 
+const renderTweets = function(tweetArr) {
+  let currTweet = {};
+  for (let tweet of tweetArr) {
+    currTweet = createTweetElement(tweet);
+    $("#tweet-container").append(currTweet);
+   
+  }
+
+};
+
+//Ex. Data
+const tweetEx = [
+  {
+    "user": {
+      "name": "Marco",
+      "avatars": "https://i.imgur.com/73hZDYK.png",
+      "handle": "@Polo"
+    },
+    "content": {
+      "text": "Where am I?"
+    },
+    "created_at": 1650904803134
+  },
+
+  {
+    "user": {
+      "name": "Descartes",
+      "avatars": "https://i.imgur.com/nlhLi3I.png",
+      "handle": "@rd"
+    },
+    "content": {
+      "text": "Je pense , donc je suis"
+    },
+    "created_at": 1650991203134
+  }
+
+];
 
 
 $(document).ready(function() {
 
   // auto-expands the textarea for multi-line tweets.
-  $('#tweet-text').on('input', function () {
+  $('#tweet-text').on('input', function() {
     this.style.height = 'auto';
       
-    this.style.height = 
+    this.style.height =
             (this.scrollHeight) + 'px';
   });
 
-  const $tweet = createTweetElement(tweetEx);
+ 
+  renderTweets(tweetEx);
 
-  console.log("tweet:",$tweet);
-  $('#tweet-container').append($tweet); 
+  // const $tweet = createTweetElement(tweetEx);
+
+  // console.log("tweet:",$tweet);
+  // $('#tweet-container').append($tweet);
 
 });
