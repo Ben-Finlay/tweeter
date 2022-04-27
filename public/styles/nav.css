@@ -29,4 +29,14 @@ nav {
 
 .red {
   color: red;
+  animation: upDown 1.2s linear infinite;
+}
+
+@keyframes upDown {
+  50% {
+    transform: translate(0px, 6px)
+  }
+  100% {
+    transform: translate(0px, 0px)
+  }
 }

@@ -3,7 +3,7 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-const noXSS = function (str) {
+const noXSS = function(str) {
   let div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
@@ -11,7 +11,7 @@ const noXSS = function (str) {
 
 //converts tweet object into HTML formatted tweet to be displayed on page.
 const createTweetElement = function(tweetData) {
-  let locale = timeago.format(tweetData.created_at, Date())
+  let locale = timeago.format(tweetData.created_at, Date());
   let $tweet = (`
     <article class="tweet">
     <header>
@@ -40,37 +40,37 @@ const createTweetElement = function(tweetData) {
 
 //takes in a tweetArr from the server and passes them to createTweetElement for display on the page
 const renderTweets = function(tweetArr) {
-  $('#tweet-container').empty()
+  $('#tweet-container').empty();
   for (let tweet of tweetArr) {
     const currTweet = createTweetElement(tweet);
-    $("#tweet-container").prepend(currTweet);   
+    $("#tweet-container").prepend(currTweet);
   }
 };
 
 //handles the form submission by preventing default behaviour and using AJAX to post the tweet to /tweets without redirecting.
-const buttonTrigger = function (e) {
+const buttonTrigger = function(e) {
   e.preventDefault();
   const formData = $(this).serialize();
-  const textarea = $("#tweet-text").val()
+  const textarea = $("#tweet-text").val();
   
   //error handling for form submissions
   let $error = $("#errormsg");
 
   $error.slideUp(100);
  
-  if(!textarea) {  
+  if (!textarea) {
     $error.text("⚠️ Please enter a tweet").css({'color':'red', "margin-top": "10px", "padding":"8px", "font-style":"italic", "font-weight":"600"});
     $error.slideDown(200);
 
     return $error;
 
-  } else  if(textarea.length > 140) {
+  } else  if (textarea.length > 140) {
     $error.text("⚠️ Tweet is too long").css({'color':'red', "margin-top": "10px", "padding":"8px", "font-style":"italic", "font-weight":"600"});
     $error.slideDown(200);
 
     return $error;
 
-  } 
+  }
  
   $("#tweet-text").val('');
   $("#counter").text('140');
@@ -83,17 +83,28 @@ const buttonTrigger = function (e) {
   })
     .then(function() {
       getTweets();
-    })  
+    });
    
 };
 
 //takes the return from the server POST and passes the array to the renderTweets function.
 const getTweets = function() {
   $.ajax("/tweets", {method: 'GET'})
-  .then((tweets) => {
-    renderTweets(tweets);
-  })
-}
+    .then((tweets) => {
+      renderTweets(tweets);
+    });
+};
+
+const newTweetButton = function() {
+  console.log("it works")
+  if ($('.new-tweet').is(':visible')) {
+    $(".new-tweet").slideUp();
+    $("#errormsg").slideUp();
+    
+  } else {
+    $(".new-tweet").slideDown();
+  }
+}  
 
 // Prevents functions from pre-firing until the page is fully loaded.
 $(document).ready(function() {
@@ -107,6 +118,9 @@ $(document).ready(function() {
 
   //listens for the button submission of our tweets.
   $("form").submit(buttonTrigger);
+  $(".writeNewTweet").on("click", function() {
+    newTweetButton();
+  });
  
 
 });
