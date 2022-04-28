@@ -7,7 +7,9 @@ html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
@@ -23,7 +25,7 @@ body {
   color: #545149;
   background-color: #f4f1ec;
   font-size: 24px;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 /*
@@ -47,14 +49,14 @@ body header {
   display: none;
   position: fixed;
   bottom: 20px;
-  right: 30px;
-  z-index: 99;
+  right: 20px;
+  z-index: 2;
   font-size: 18px;
   border: none;
   outline: none;
   background-color: red;
   cursor: pointer;
-  padding: 21.312px 26.5px ;
+  padding: 21.312px 26.5px;
   border-radius: 50%;
 }
 
@@ -69,24 +71,24 @@ body header {
     display: flex;
 
   }
-  
+
   body {
     flex-direction: row;
     justify-content: space-between;
   }
 
- body header {
+  body header {
     margin: 200px 0 0 60px;
     width: 50%;
-    
+
   }
 
   .container {
     width: 50%;
     float: right;
     margin: 180px 0 0 20px;
-    
-  } 
+
+  }
 
   article.tweet header {
     width: 100%;

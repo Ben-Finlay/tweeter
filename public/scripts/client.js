@@ -3,13 +3,15 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
+
+//This sanitizes the inputs to prevent cross scripting.
 const noXSS = function(str) {
   let div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 };
 
-//converts tweet object into HTML formatted tweet to be displayed on page.
+//This converts tweet object into HTML formatted tweet to be displayed on page.
 const createTweetElement = function(tweetData) {
   let locale = timeago.format(tweetData.created_at, Date());
   let $tweet = (`
@@ -38,7 +40,7 @@ const createTweetElement = function(tweetData) {
 
 };
 
-//takes in a tweetArr from the server and passes them to createTweetElement for display on the page
+//This takes in a tweetArr from the server and passes them to createTweetElement for display on the page.
 const renderTweets = function(tweetArr) {
   $('#tweet-container').empty();
   for (let tweet of tweetArr) {
@@ -47,13 +49,13 @@ const renderTweets = function(tweetArr) {
   }
 };
 
-//handles the form submission by preventing default behaviour and using AJAX to post the tweet to /tweets without redirecting.
+//This handles the form submission by preventing default behaviour and using AJAX to post the tweet to /tweets without redirecting.
 const buttonTrigger = function(e) {
   e.preventDefault();
   const formData = $(this).serialize();
   const textarea = $("#tweet-text").val();
   
-  //error handling for form submissions
+  //Error handling for form submissions
   let $error = $("#errormsg");
 
   $error.slideUp(100);
@@ -72,9 +74,11 @@ const buttonTrigger = function(e) {
 
   }
  
+  //Resets the form and counter on successful submission.
   $("#tweet-text").val('');
   $("#counter").text('140');
 
+  //Sends the tweet text to the server, then calls getTweets to display tweets in database.
   $.ajax({
     method: "POST",
     data: formData,
@@ -88,7 +92,7 @@ const buttonTrigger = function(e) {
    
 };
 
-//takes the return from the server POST and passes the array to the renderTweets function.
+//This requests the server return all the tweets in the database, and passes it to renderTweets for display on the page.
 const getTweets = function() {
   $.ajax("/tweets", {method: 'GET'})
     .then((tweets) => {
@@ -96,7 +100,7 @@ const getTweets = function() {
     });
 };
 
-//hides or reveals the create tweet form
+//This hides or reveals the create tweet form.
 const newTweetButton = function() {
   if ($('.new-tweet').is(':visible')) {
     $(".new-tweet").slideUp();
@@ -110,40 +114,43 @@ const newTweetButton = function() {
 
 
 
-// Prevents functions from pre-firing until the page is fully loaded.
+//Prevents functions from pre-firing until the page is fully loaded.
 $(document).ready(function() {
 
-  //listens for the button submission of our tweets.
+  //This listens for the button submission of our tweets.
   $("form").submit(buttonTrigger);
 
-  //hides or unhides the header
+  //This hides or unhides the header
   $(".writeNewTweet").on("click", function() {
     newTweetButton();
   });
  
-  //calls to pre-load the database tweets
+  //This calls the server to pre-load the database tweets.
   getTweets();
 
-  //hides the from until newTweetButton is called
+  //This hides the form to enter new tweets by default.
   $('.new-tweet').hide();
 
-  //scroll button
-let returnButton = document.getElementById("return");
+  //The following handles the scroll button.
+  let returnButton = document.getElementById("return");
 
-// When the user scrolls down 30px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
+  //When the user scrolls down 120px (height of the navbar) from the top of the webpage, reveal the button.
+  window.onscroll = function() {
+    scrollFunction();
+  };
 
-function scrollFunction() {
-  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-    returnButton.style.display = "block";
-  } else {
-    returnButton.style.display = "none";
+  //Checks whether the user has scrolled down past 120px and displays the scroll to top button.
+  function scrollFunction() {
+    if (document.body.scrollTop > 120 || document.documentElement.scrollTop > 120) {
+      returnButton.style.display = "block";
+    } else {
+      returnButton.style.display = "none";
+    }
   }
-}
 
-// When the user clicks on the button, scroll to the top of the document
-$("#return").click(function() {
-  $(window).scrollTop(0)
-})
+  // When the user clicks on the button, scroll to the top of the document
+  $("#return").click(function() {
+    $(window).scrollTop(0);
+  });
 
 });

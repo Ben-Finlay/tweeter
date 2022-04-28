@@ -3,31 +3,7 @@
 
 $(document).ready(function() {
 
-  //Vanilla JS
-
-  // const input = document.querySelector('textarea');
-  // const log = document.getElementById('counter');
-
-  // input.addEventListener('input', updateValue);
-
-  // function updateValue(e) {
-  //   log.textContent = e.target.value;
-  //   let count = log.textContent.length;
-  //   let char = 140;
-  //   char = 140 - count;
-  //   document.getElementById('counter').innerHTML = char;
-  //   if (char < 0) {
-  //     document.getElementById('counter').style.color = "red";
-    
-  //   } else {
-  //     document.getElementById('counter').style.color = "black";
-
-  //   }
-  // }
-
-  //jQuery
-
-  //handles updating the counter below and to the right of the form
+  //Handles updating the counter below and to the right of the form
   const log = $('#counter');
   $('#tweet-text').on('input', (e) => {
     const count = e.target.value.length;
