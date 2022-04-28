@@ -27,6 +27,7 @@ $(document).ready(function() {
 
   //jQuery
 
+  //handles updating the counter below and to the right of the form
   const log = $('#counter');
   $('#tweet-text').on('input', (e) => {
     const count = e.target.value.length;

@@ -37,3 +37,31 @@ body {
   justify-content: center;
   background-color: #f4f1ec;
 }
+
+
+@media (min-width: 1024px) {
+  #media {
+    display: flex;
+
+  }
+  
+  body {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  body header {
+    width: 30%;
+    margin: 200px 0 0 60px;
+    padding: 60px 20px 20px 20px;
+  }
+
+  .container {
+    width: 50%;
+    
+    float: right;
+    margin: 170px 0 0 200px
+
+  }
+}
+
