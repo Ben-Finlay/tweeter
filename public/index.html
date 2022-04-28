@@ -50,41 +50,46 @@
     </div>
   </nav>
   <div id="media">
-  <!-- Profile Picture and Name Display in Header -->
-  <header>
-    <div>
-      <img src="/images/profile-hex-copy.png">
-    </div>
-    <br>
-    <div>
-      <h2>Ben <span class="thin">Jammin'</span></h2>
-    </div>
-  </header>
+    <!-- Profile Picture and Name Display in Header -->
+    <header>
+      <div>
+        <img src="/images/profile-hex-copy.png">
+      </div>
+      <br>
+      <div>
+        <h2>Ben <span class="thin">Jammin'</span></h2>
+      </div>
+    </header>
 
-  <!-- Page-specific (main) content here -->
-  <main class="container">
-    <div id="errormsg">
-    </div>
-    <section class="new-tweet">
+    <!-- Page-specific (main) content here -->
+    <main class="container">
+      <div id="errormsg">
+      </div>
+      <section class="new-tweet">
 
-      <!-- <h2>Compose Tweet</h2> -->
-      <form method="POST" action="/tweets">
-        <label for="tweet-text">What are you humming about?</label>
+        <!-- <h2>Compose Tweet</h2> -->
+        <form method="POST" action="/tweets">
+          <label for="tweet-text">What are you humming about?</label>
 
-        <textarea name="text" id="tweet-text"></textarea>
-        <div class="tweet-submit">
-          <button type="submit">Tweet</button>
-          <output name="counter" id="counter" for="tweet-text">140</output>
-        </div>
-      </form>
-    </section>
-    <!-- Past Tweets Display in this Section -->
-    <section id="tweet-container">
+          <textarea name="text" id="tweet-text"></textarea>
+          <div class="tweet-submit">
+            <button type="submit">Tweet</button>
+            <output name="counter" id="counter" for="tweet-text">140</output>
+          </div>
+        </form>
+      </section>
+      <!-- Past Tweets Display in this Section -->
+      <section id="tweet-container">
 
-    </section>
+      </section>
 
-  </main>
-</div>
+    </main>
+  </div>
+  <button id="return" title="return">
+    <i class="fa-solid fa-angles-up white"></i>
+  </button>
+
+  
 </body>
 
 </html>

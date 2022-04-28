@@ -59,14 +59,13 @@ const buttonTrigger = function(e) {
   $error.slideUp(100);
  
   if (!textarea) {
-    $error.text("⚠️ Please enter a tweet").css({'color':'red', "margin-top": "10px", "padding":"8px", "font-style":"italic", "font-weight":"600"});
+    $error.text("⚠️ Please enter a tweet ").css({'color':'white', "margin-top": "10px", "padding":"8px", "font-weight":"600", "background-color":"salmon", "border-radius":"15px"});
     $error.slideDown(200);
 
     return $error;
 
   } else  if (textarea.length > 140) {
-    $error.text("⚠️ Tweet is too long").css({'color':'red', "margin-top": "10px", "padding":"8px", "font-style":"italic", "font-weight":"600"});
-    $error.slideDown(200);
+    $error.text("⚠️ Tweet is too long").css({'color':'white', "margin-top": "10px", "padding":"8px", "font-weight":"600", "background-color":"salmon", "border-radius":"15px"});
 
     return $error;
 
@@ -95,6 +94,7 @@ const getTweets = function() {
     });
 };
 
+//hides or reveals the create tweet form
 const newTweetButton = function() {
   console.log("it works");
   if ($('.new-tweet').is(':visible')) {
@@ -106,6 +106,8 @@ const newTweetButton = function() {
     
   }
 };
+
+
 
 // Prevents functions from pre-firing until the page is fully loaded.
 $(document).ready(function() {
@@ -130,5 +132,24 @@ $(document).ready(function() {
 
   //hides the from until newTweetButton is called
   $('.new-tweet').hide();
+
+  //scroll button
+let returnButton = document.getElementById("return");
+
+// When the user scrolls down 30px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
+    returnButton.style.display = "block";
+  } else {
+    returnButton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+$("#return").click(function() {
+  $(window).scrollTop(0)
+})
 
 });

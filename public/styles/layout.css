@@ -42,6 +42,26 @@ body header {
   width: 100%;
 }
 
+#return {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: red;
+  cursor: pointer;
+  padding: 21.312px 26.5px ;
+  border-radius: 50%;
+}
+
+.white {
+  color: white;
+}
+
+
 
 @media (min-width: 1024px) {
   #media {
@@ -55,24 +75,15 @@ body header {
   }
 
  body header {
-    width: 100%;
     margin: 200px 0 0 60px;
     
   }
 
   .container {
-    width: 50%;
+    width: 40%;
     float: right;
-    margin: 200px 0 0 200px;
+    margin: 180px 0 0 200px;
     
   } 
 
-  article.tweet header {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-
-  }
-    
 }
-
