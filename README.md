@@ -1,18 +1,34 @@
 # Tweeter Project
 
-Tweeter is a simple, single-page Twitter clone.
+Tweeter is a simple, single-page front-end Twitter clone.
 
-This repository is the starter code for the project: Students will fork and clone this repository, then build upon it to practice their HTML, CSS, JS, jQuery and AJAX front-end skills, and their Node, Express back-end skills.
+* Makes use of HTML, CSS, JS, JQuery, AJAX.
+* Responsive design to function well both on mobile and desktop.
+* An animated toggle to reveal or hide a compose tweet section.
+* Real time character counter, and form validation for new tweets.
 
-## Getting Started
 
-1. [Create](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) a new repository using this repository as a template.
-2. Clone your repository onto your local device.
-3. Install dependencies using the `npm install` command.
-3. Start the web server using the `npm run local` command. The app will be served at <http://localhost:8080/>.
-4. Go to <http://localhost:8080/> in your browser.
+## Final Product
+
+This image shows the mobile design.
+!["Mobile"](https://github.com/Ben-Finlay/tweeter/blob/master/docs/Mobile.png)
+
+This image shows the desktop design.
+!["Desktop"](https://github.com/Ben-Finlay/tweeter/blob/master/docs/Desktop.png)
+
+This shows some of the functionality.
+!["Gif of it in use"](https://github.com/Ben-Finlay/tweeter/blob/master/docs/Example%20Tweet.gif)
 
 ## Dependencies
 
+- Node.js
 - Express
-- Node 5.10.x or above
+- body-parser
+- chance
+
+## ## Getting Started
+
+- Fork this repository, then clone it.
+- Install all dependencies (using the `npm install` command).
+- Run the development web server using the `npm run local` command.
+- Go to <http://localhost:8080/> in your browser
