@@ -66,6 +66,7 @@ const buttonTrigger = function(e) {
 
   } else  if (textarea.length > 140) {
     $error.text("⚠️ Tweet is too long").css({'color':'white', "margin-top": "10px", "padding":"8px", "font-weight":"600", "background-color":"salmon", "border-radius":"15px"});
+    $error.slideDown(200);
 
     return $error;
 
@@ -73,6 +74,7 @@ const buttonTrigger = function(e) {
  
   $("#tweet-text").val('');
   $("#counter").text('140');
+
   $.ajax({
     method: "POST",
     data: formData,
@@ -96,7 +98,6 @@ const getTweets = function() {
 
 //hides or reveals the create tweet form
 const newTweetButton = function() {
-  console.log("it works");
   if ($('.new-tweet').is(':visible')) {
     $(".new-tweet").slideUp();
     $("#errormsg").slideUp();
@@ -111,13 +112,6 @@ const newTweetButton = function() {
 
 // Prevents functions from pre-firing until the page is fully loaded.
 $(document).ready(function() {
-
-  // auto-expands the textarea for multi-line tweets.
-  $('#tweet-text').on('input', function() {
-    this.style.height = 'auto';
-    this.style.height =
-            (this.scrollHeight) + 'px';
-  });
 
   //listens for the button submission of our tweets.
   $("form").submit(buttonTrigger);
@@ -140,7 +134,7 @@ let returnButton = document.getElementById("return");
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
-  if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
+  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
     returnButton.style.display = "block";
   } else {
     returnButton.style.display = "none";
