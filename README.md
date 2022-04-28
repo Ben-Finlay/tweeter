@@ -26,7 +26,7 @@ This shows some of the functionality.
 - body-parser
 - chance
 
-## ## Getting Started
+## Getting Started
 
 - Fork this repository, then clone it.
 - Install all dependencies (using the `npm install` command).
